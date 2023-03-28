@@ -43,10 +43,14 @@ def run_commands(words_said):
 
 	if command_type == 'WHETHER':
 		placeholder_dict = {"void","void"}
-		city = words_said[1].lower()
+		city = ""
+		for i in range(len(words_said)-1):
+			if i != 0:
+				city = city + " " + words_said[i]
+		print(city)
 		weather_for_city = weather_commands(city,placeholder_dict)
-		weather_command = words_said[2].lower()
-		print("Giving you the: " +  weather_command + " in " + weather_commands.city)
+		weather_command = words_said[len(words_said)-1].lower()
+		print("Giving you the: " +  weather_command + " in " + city)
 		weather_for_city.execute_command(weather_command)
 
 if __name__ == '__main__':
