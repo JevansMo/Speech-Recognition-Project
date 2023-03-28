@@ -4,18 +4,22 @@ import requests
 class cli_commands():
 
 	def shutdown():
+		print("Shutting down...")
 		subprocess.run(['shutdown'])
 
 
 	def reboot():
+		print("Rebooting...")
 		subprocess.run(['reboot'])
 
 
 	def ping():
+		print("Pinging Google...")
 		subprocess.run(['ping','-c 1','www.google.com'])
 
 
 	def update():
+		print("Updating...")
 		subprocess.run(['sudo', 'apt-get', 'update'])
 
 
