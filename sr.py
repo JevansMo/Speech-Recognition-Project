@@ -5,10 +5,10 @@ from commands import weather_commands
 
 def main():
 	execute = command()
-	print(execute)
 	run_commands(execute)
 
 def command():
+	# creates the file to record your voice
 	subprocess.run(['arecord','-d','3','-r','48000','command.wav'])
 	api_url = 'https://speech-recognition-english.p.rapidapi.com/api/asr'
 	api_key = '9b3e089dfdmsh441fc6b319431ddp14ec82jsn1f9a66bcec21'
@@ -23,17 +23,16 @@ def command():
 		}
 	response = requests.post(api_url, files=files, headers=header)
 	words_said = response.text.split("text")[1].split(" \",")[0].replace("\":\"","")
-	print(words_said)
 	return words_said
 
 def run_commands(words_said):
 	words_said = words_said.split(" ")
 	command_type = words_said[0]
-        # TODO: Maps do not work the way I thought, find another way to correlate words with commands
 
 	if command_type == 'COMMAND':
 		print(words_said[1])
 		cli_command = words_said[1].lower()
+		# speech recognition api rarely recognizes the word 'ping'
 		if cli_command == 'pig':
 			print("I think you meant: \"ping\"")
 			cli_command = 'ping'
@@ -41,13 +40,13 @@ def run_commands(words_said):
 
 
 
-	if command_type == 'WHETHER':
+	if command_type == 'WHETHER' or command_type == 'WEATHER':
+		# placeholder for the querystring in commands.py that the weather api uses
 		placeholder_dict = {"void","void"}
 		city = ""
 		for i in range(len(words_said)-1):
 			if i != 0:
 				city = city + " " + words_said[i]
-		print(city)
 		weather_for_city = weather_commands(city,placeholder_dict)
 		weather_command = words_said[len(words_said)-1].lower()
 		print("Giving you the: " +  weather_command + " in " + city)
