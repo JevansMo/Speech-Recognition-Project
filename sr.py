@@ -2,10 +2,13 @@ import subprocess
 import requests
 from commands import cli_commands
 from commands import weather_commands
+import pvporcupine
 
 def main():
 	execute = command()
+	print(execute)
 	run_commands(execute)
+
 
 def command():
         # creates the file to record your voice
@@ -32,7 +35,7 @@ def run_commands(words_said):
 	if command_type == 'COMMAND':
 		cli_command = words_said[1].lower()
                 # speech recognition api rarely recognizes the word 'ping'
-		if cli_command == 'pig':
+		if cli_command == 'pig' or cli_command == 'pin':
 			print("I think you meant: \"ping\"")
 			cli_command = 'ping'
 			cli_commands.execute_command(cli_command)
@@ -50,6 +53,3 @@ def run_commands(words_said):
 		weather_command = words_said[len(words_said)-1].lower()
 		print("Giving you the: " +  weather_command + " in " + city)
 		weather_for_city.execute_command(weather_command)
-
-if __name__ == '__main__':
-        main()
