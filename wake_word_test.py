@@ -2,7 +2,8 @@ import pvporcupine
 import struct
 import time
 import pyaudio
-
+from sr import command
+from sr import run_commands
 
 def main():
 	porcupine = None
@@ -30,12 +31,14 @@ def main():
 
 			keyword_index = porcupine.process(pcm)
 			if keyword_index == 0:
-				print('Listening for command.. ', end='')
-				print(':)')
-				time.sleep(1)
+				print('Wake word detected. Listening for command.. ')
+				user_input = command()
+				print(user_input)
+				run_commands(user_input)
 				print('On standby ')
 			elif keyword_index == 1:
 				print('Ending...')
+				exit()
 
 	finally:
 		if porcupine is not None:
