@@ -2,13 +2,15 @@ import subprocess
 import requests
 from commands import cli_commands
 from commands import weather_commands
+import pvporcupine
 
 def main():
 	execute = command()
 	run_commands(execute)
 
+
 def command():
-	# creates the file to record your voice
+        # creates the file to record your voice
 	subprocess.run(['arecord','-d','3','-r','48000','command.wav'])
 	api_url = 'https://speech-recognition-english.p.rapidapi.com/api/asr'
 	api_key = '9b3e089dfdmsh441fc6b319431ddp14ec82jsn1f9a66bcec21'
@@ -30,18 +32,17 @@ def run_commands(words_said):
 	command_type = words_said[0]
 
 	if command_type == 'COMMAND':
-		print(words_said[1])
 		cli_command = words_said[1].lower()
-		# speech recognition api rarely recognizes the word 'ping'
-		if cli_command == 'pig':
+                # speech recognition api rarely recognizes the word 'ping'
+		if cli_command == 'pig' or cli_command == 'pin':
 			print("I think you meant: \"ping\"")
 			cli_command = 'ping'
-		cli_commands.execute_command(cli_command)
+			cli_commands.execute_command(cli_command)
 
 
 
 	if command_type == 'WHETHER' or command_type == 'WEATHER':
-		# placeholder for the querystring in commands.py that the weather api uses
+                # placeholder for the querystring in commands.py that the weather api uses
 		placeholder_dict = {"void","void"}
 		city = ""
 		for i in range(len(words_said)-1):
@@ -51,7 +52,3 @@ def run_commands(words_said):
 		weather_command = words_said[len(words_said)-1].lower()
 		print("Giving you the: " +  weather_command + " in " + city)
 		weather_for_city.execute_command(weather_command)
-
-if __name__ == '__main__':
-        main()
-
