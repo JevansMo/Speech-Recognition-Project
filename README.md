@@ -4,7 +4,7 @@ A beginner project that mimics voice activated assistants using a raspberry pi.
 
 How to activate:
 
-The program awaits a wake word upon running it. Use the word: "Blueberry" and the assistant will listen for a command for three seconds.
+The program awaits a wake word upon running it. Use the word "Blueberry" and the assistant will listen for a command for three seconds. Use the word "Bumblebee" to end the program.
 
 
 Current commands:
