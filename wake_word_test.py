@@ -13,7 +13,7 @@ def main():
 
 	try:
 		porcupine = pvporcupine.create(
-			access_key = 'xVBfiZ37cJufNWC+6Zlzvij/wOaIttDdNj8SqpFXu14ZHaah8Eg1kw==',
+			access_key = 'ENTER_ACCESS_KEY',
 			keywords = ['blueberry', 'grapefruit']
 		)
 		pa = pyaudio.PyAudio()
