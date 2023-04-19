@@ -31,14 +31,16 @@ def run_commands(words_said):
 	words_said = words_said.split(" ")
 	command_type = words_said[0]
 
-	if command_type == 'COMMAND':
+	# speech recognition will not always detect the word command 'command'
+	if 'COMMAND' in command_type:
 		cli_command = words_said[1].lower()
+		if cli_command.lower() == 'shut':
+			cli_command = 'shutdown'
                 # speech recognition api rarely recognizes the word 'ping'
-		if cli_command == 'pig' or cli_command == 'pin':
+		elif cli_command == 'pig' or cli_command == 'pin':
 			print("I think you meant: \"ping\"")
 			cli_command = 'ping'
-			cli_commands.execute_command(cli_command)
-
+		cli.commands.execute_command(cli_command)
 
 
 	if command_type == 'WHETHER' or command_type == 'WEATHER':
@@ -50,5 +52,5 @@ def run_commands(words_said):
 				city = city + " " + words_said[i]
 		weather_for_city = weather_commands(city,placeholder_dict)
 		weather_command = words_said[len(words_said)-1].lower()
-		print("Giving you the: " +  weather_command + " in " + city)
+		print("Giving you the: " +  weather_command.lower + " in" + city.capitalize())
 		weather_for_city.execute_command(weather_command)
