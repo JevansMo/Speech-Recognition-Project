@@ -40,7 +40,7 @@ def run_commands(words_said):
 		elif cli_command == 'pig' or cli_command == 'pin':
 			print("I think you meant: \"ping\"")
 			cli_command = 'ping'
-		cli.commands.execute_command(cli_command)
+		cli_commands.execute_command(cli_command)
 
 
 	if command_type == 'WHETHER' or command_type == 'WEATHER':
