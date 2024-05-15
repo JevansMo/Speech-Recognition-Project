@@ -41,7 +41,7 @@ class weather_commands():
 	url = "https://weatherapi-com.p.rapidapi.com/current.json"
 	querystring = {"q":city}
 	headers = {
-		"X-RapidAPI-Key": "9b3e089dfdmsh441fc6b319431ddp14ec82jsn1f9a66bcec21",
+		"X-RapidAPI-Key": #API Key here,
 		"X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
 		}
 	response = requests.request("GET", url, headers=headers, params=querystring)
