@@ -13,14 +13,14 @@ def command():
         # creates the file to record your voice
 	subprocess.run(['arecord','-d','3','-r','48000','command.wav'])
 	api_url = 'https://speech-recognition-english.p.rapidapi.com/api/asr'
-	api_key = '9b3e089dfdmsh441fc6b319431ddp14ec82jsn1f9a66bcec21'
+	api_key = #API Key Here
 
 	sound_path = 'voice_recog_project'
 	sound_name = 'command.wav'
 
 	files = {'sound': (sound_name, open(sound_name, 'rb'), 'multipart/form-data')}
 	header = {
-		"X-RapidAPI-Key": "9b3e089dfdmsh441fc6b319431ddp14ec82jsn1f9a66bcec21",
+		"X-RapidAPI-Key": api_key,
 		"X-RapidAPI-Host": "speech-recognition-english1.p.rapidapi.com"
 		}
 	response = requests.post(api_url, files=files, headers=header)
